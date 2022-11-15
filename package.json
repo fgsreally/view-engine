@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "changesets": "changesets",
-    "publish": "changesets publish",
+    "changeset": "changeset",
+    "publish": "changeset publish",
     "test": "pnpm --filter=@view-engine/* run test",
     "build": "pnpm --filter=@view-engine/* run build"
   },
