@@ -13,7 +13,6 @@
     "@babel/parser": "^7.20.3",
     "@types/file-saver": "^2.0.5",
     "@types/lodash-es": "^4.17.6",
-    "@view-engine/backend": "workspace:^1.0.0",
     "@view-engine/core": "workspace:^1.0.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vueuse/core": "^9.3.0",

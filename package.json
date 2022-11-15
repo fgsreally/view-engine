@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@changesets/cli": "^2.25.0",
-    "vue": "^3.2.38"
+    "vue": "^3.2.39"
   },
   "devDependencies": {
     "@types/jsdom": "^20.0.0",
