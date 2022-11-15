@@ -8,7 +8,8 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "playground*"
-  
+    "playground",
+    "playground-server",
+    "playground-render"
   ]
 }
