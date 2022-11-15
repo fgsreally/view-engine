@@ -1,0 +1,33 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "context": {},
+  "services": { "default": "console.log(value)\r\n\r\nctx.micro.a()" },
+  "pages": {
+    "default": {
+      "services": { "default": "console.log(value)\r\n\r\nctx.micro.a()" },
+      "state": { "value": "测试数据" },
+      "instance": {
+        "blocks": [
+          {
+            "blocks": [],
+            "propsData": { "value": "测试数据" },
+            "rawProps": { "value": "{{value}}" },
+            "key": "test1",
+            "uuid": "3h5v1dqzFQFV7PgzLC6HR",
+            "x": 196,
+            "y": 80,
+            "slot": "default",
+            "layer": 1,
+            "actions": [{ "key": "A", "handler": "default" }],
+            "parent": "1",
+            "width": { "value": 100, "type": "px" },
+            "height": { "value": 100, "type": "px" }
+          }
+        ]
+      },
+      "components": ["test2"],
+      "modules": ["micro"]
+    }
+  }
+}
+

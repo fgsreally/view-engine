@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #e0c3fc84;
+  /* background-image: linear-gradient(132deg, #64a5284a 0%, #16a08458 100%); */
+}
+
+:root {
+  --el-bg-color: #e0c3fc;
+  --el-fill-color-light: #861aeb82;
+  --el-fill-color-blank: #e0c3fce6;
+  --el-bg-color-overlay: #e0c3fce6;
+  --el-color-primary: #a852f8;
+  font-family: "Helvetica Neue";
+}
+
+.el-button {
+  --el-button-hover-bg-color: #edddfda4 !important;
+  --el-button-hover-border-color: #a852f8 !important;
+  --el-button-hover-text-color: #a852f8 !important;
+}
+
+.el-input__wrapper {
+  --el-input-bg-color: #d1a4fa7e !important;
+}
+
+.el-badge__content {
+  z-index: 10;
+}
+
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item.selected.hover {
+  color: rgba(255, 255, 255, 0.712);
+}
+
+
+
+.block_edit {
+  position: absolute;
+  pointer-events: auto;
+  width: fit-content;
+  user-select: none;
+}
+
+.slotBlock_edit {
+  user-select: none;
+  pointer-events: auto;
+  position: relative;
+  width: fit-content;
+}
+
+.innerBlock_edit {
+  pointer-events: none;
+  user-select: none;
+}
+
+.block_render {
+  position: absolute;
+}
+
+.slotBlock_render {
+  position: relative;
+}
+
+p.preview-section-item {
+  background: linear-gradient(62deg, #0980f7 0%, #8b17f9 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}

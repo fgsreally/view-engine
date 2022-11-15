@@ -1,0 +1,26 @@
+{
+  "name": "@view-engine/core",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest --environment jsdom"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "nanoid": "^4.0.0",
+    "vue": "^3.2.38"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
+    "jsdom": "^20.0.0",
+    "tsup": "^6.2.3",
+    "vitest": "^0.23.0"
+  }
+}

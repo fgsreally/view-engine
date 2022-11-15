@@ -1,0 +1,18 @@
+.block_render {
+  position: absolute;
+
+}
+
+.slotBlock_render {
+  position: relative;
+}
+
+body {
+  width: 100vw;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
