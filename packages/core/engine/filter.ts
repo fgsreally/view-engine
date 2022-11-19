@@ -10,7 +10,7 @@ type Rule = {
 
 export function createFilter<ContextType extends { state: any }>(
   initState: any = {},
-  option: { re?: RegExp; exclude?: string[] }={}
+  option: { re?: RegExp; exclude?: string[] } = {}
 ) {
   option = Object.assign(
     {
@@ -82,9 +82,13 @@ export function createFilter<ContextType extends { state: any }>(
   function setStore(key: string) {
     store[key] = ctx.state;
   }
+  function applyStore(key: string) {
+    if (!store[key]) return;
+    ctx.state = store[key];
+  }
 
   function init(params: any) {
     ctx.state = params || initState || {};
   }
-  return { filter, ctx, init, setState, setStore, store };
+  return { filter, ctx, init, setState, setStore, store, applyStore };
 }

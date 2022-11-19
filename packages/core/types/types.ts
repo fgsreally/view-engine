@@ -11,8 +11,6 @@ export interface defaultContainerState<Screen extends string> {
 export type defaultActState<BlockType, DataState> = {
   clickBlock: null | BlockType;
   hoverBlock: null | BlockType;
-  clickDom: null | HTMLElement | string;
-  hoverDom: null | HTMLElement | string;
   container: DataState;
 };
 
@@ -78,7 +76,7 @@ export interface registerCenter<RegisterComponent> {
 }
 
 export interface EngineConfig {
-  actionConfig?: { [key in string]: any };
+  actionBlocks?: string[];
   containerConfig?: { [key in string]: any };
   snapshotList?: string[];
   historyLength?: number;

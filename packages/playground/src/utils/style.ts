@@ -9,6 +9,7 @@ export function changeStyleValue(name: string, value: string) {
 }
 
 export function toPx(block: any, key: string): number {
+  console.log(block)
   let property: { size: SizeType; value: number } = block[key];
   switch (property.size) {
     case "rem":

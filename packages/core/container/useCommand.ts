@@ -2,7 +2,7 @@ import { onUnmounted } from "vue";
 
 interface defaultCommand {
   name: string;
-  execute: () => { redo(): void; undo(): void };
+  execute: () => { redo?(): void; undo?(): void };
   keyboard?: string;
   init?: () => () => void;
   pushQueue?: boolean;
@@ -30,8 +30,8 @@ export function useCommand<Command extends defaultCommand>() {
     state.commandArray.push(command);
     state.commands[command.name] = () => {
       //命令名字对应执行函数
-      const { redo, undo } = command.execute();
-      redo();
+      const { redo, undo } = command.execute()||{};
+      redo?.();
       if (!command.pushQueue) {
         return;
       }

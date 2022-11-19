@@ -60,16 +60,15 @@ export class Engine<
     this.scope = effectScope();
     this.source = ref<DataState>(data);
 
-    this.actState = reactive<any>({
-      ...{
-        clickBlock: null,
-        hoverBlock: null,
-        clickDom: null,
-        hoverDom: null,
-        container: this.source.value,
-      },
-      ...(config.actionConfig || {}),
+    const actState = {
+      clickBlock: null,
+      hoverBlock: null,
+      container: this.source.value,
+    };
+    config.actionBlocks?.forEach((item) => {
+      (actState as any)[item] = null;
     });
+    this.actState = reactive<any>(actState);
 
     this.error = error;
     this.snapshotList = config.snapshotList || [];
@@ -132,9 +131,6 @@ export class Engine<
   get hoverBlock() {
     return this.actState.hoverBlock as BlockType;
   }
-  get clickDom() {
-    return this.actState.clickDom as HTMLElement;
-  }
 
   updateContainer() {
     this.actState.container = this.source.value;
@@ -146,7 +142,7 @@ export class Engine<
     (this.actState as any)[actObj] = Block;
   }
 
-  $cancel(actObj: keyof ActState | [keyof ActState] = "clickBlock") {
+  $cancel(actObj: keyof ActState | (keyof ActState)[] = "clickBlock") {
     if (Array.isArray(actObj)) {
       actObj.forEach((item) => {
         (this.actState as any)[item] = null;
@@ -205,20 +201,21 @@ export class Engine<
     );
   }
 
-  $selectDom(dom: HTMLElement | string, actObj: keyof ActState = "clickDom") {
-    (this.actState as any)[actObj] =
-      typeof dom === "string" ? document.getElementById(dom) : dom;
-  }
-
   load(data: DataState) {
     if (this.isFixed) {
       this.error("it has been fixed");
       return;
     }
+    this.blockMap.clear();
     //for json storage
-    // this._initTraverse(data);
+
     (this.source as any).value = data;
     this.blockMap.set("1", this.source.value as any);
+    for (let i of data.blocks) {
+      this.traverse(data, (block) => {
+        this.blockMap.set(block.uuid, block);
+      });
+    }
   }
 
   _create(Block: Partial<BlockType>) {
@@ -341,7 +338,7 @@ export class Engine<
     this._insert(Block, BlockOrID, "after");
   }
 
-  traverse(Block: BlockType, cb: (block: BlockType) => void) {
+  traverse(Block: BlockType | DataState, cb: (block: BlockType) => void) {
     Block.blocks.forEach((item) => {
       cb(item);
       this.traverse(item, cb);

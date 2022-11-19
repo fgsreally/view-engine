@@ -17,7 +17,8 @@ export function createService<
     services: {},
   } as any);
 
-  const store: { [key: string]: any } = {};
+  const serviceStore: { [key: string]: any } = {};
+  const contextStore: { [key: string]: any } = {};
 
   let hydrate = (externals: { [key in string]: any }) => {
     if (opts.type === "functional") {
@@ -69,6 +70,9 @@ export function createService<
   let addContext = (key: string, value: any) => {
     ctx.context[key] = value;
   };
+  let delContext = (key: string) => {
+    delete ctx.context[key];
+  };
 
   let getService = (key: string, externals: { [key in string]: any } = {}) => {
     if (!ctx.services[key]) return;
@@ -109,15 +113,22 @@ export function createService<
     initService();
   };
 
-  let setStore = (
-    key: string,
-    category: "context" | "services" = "services"
-  ) => {
-    store[key] = ctx[category];
+  let storeService = (key: string) => {
+    serviceStore[key] = ctx.services;
+  };
+
+  let storeContext = (key: string) => {
+    contextStore[key] = ctx.context;
+  };
+
+  let applyStore = (key: string, category: "services" | "context") => {
+    let store = category === "services" ? serviceStore : contextStore;
+    ctx[category] = store[key];
   };
   return {
-    store,
-    setStore,
+    storeService,
+    storeContext,
+    applyStore,
     isValid,
     addService,
     ctx,
@@ -125,6 +136,7 @@ export function createService<
     applyService,
     getService,
     addContext,
+    delContext,
     initService,
     init,
     initContext,
